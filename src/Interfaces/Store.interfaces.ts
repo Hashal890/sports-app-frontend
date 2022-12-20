@@ -1,5 +1,6 @@
 export interface UserDetails {
-  name?: string;
+  fName?: string;
+  lName?: string;
   username?: string;
   password?: string;
   age?: number;

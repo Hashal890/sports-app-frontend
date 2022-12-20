@@ -3,7 +3,7 @@ import {
   AUTH_SUCCESS,
   AUTH_ERROR,
   POST_USERS_SUCCESS,
-} from "./auth.types.js";
+} from "./auth.types";
 import { ReducerInput } from "../../Interfaces/Store.interfaces.js";
 
 const userInitalState = {
