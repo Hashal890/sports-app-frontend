@@ -4,7 +4,7 @@ import {
   compose,
   applyMiddleware,
 } from "redux";
-import { authReducer } from "./user/auth.reducer";
+import { authReducer } from "./auth/auth.reducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
