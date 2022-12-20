@@ -16,6 +16,11 @@ export const NavbarLinks = [
   },
   {
     id: 4,
+    name: "My Events",
+    link: "/myevents",
+  },
+  {
+    id: 5,
     name: "Events List",
     link: "/list",
   },
@@ -31,4 +36,11 @@ export const RegisterInitState = {
   lName: "",
   username: "",
   password: "",
+};
+
+export const MyEventsInitialState = {
+  title: "",
+  desc: "",
+  date: "",
+  limit: 0,
 };

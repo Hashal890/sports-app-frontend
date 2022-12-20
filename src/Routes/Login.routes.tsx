@@ -47,8 +47,8 @@ const Login = () => {
     } else {
       try {
         toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
+          title: "Login successful.",
+          description: "You are logged in to your account.",
           status: "success",
           duration: 5000,
           isClosable: true,
