@@ -17,17 +17,11 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-
-const initState = {
-  fName: "",
-  lName: "",
-  username: "",
-  password: "",
-};
+import { RegisterInitState } from "../Assets/data";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [details, setDetails] = useState(initState);
+  const [details, setDetails] = useState(RegisterInitState);
   const toast = useToast();
 
   const onChange = (e: any) => {
@@ -66,7 +60,7 @@ const Register = () => {
           variant: "left-accent",
           position: "bottom-right",
         });
-        setDetails(initState);
+        setDetails(RegisterInitState);
       } catch (error: any) {
         toast({
           title: error.message,
@@ -82,9 +76,10 @@ const Register = () => {
 
   return (
     <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
+      // minH={"100vh"}
+      // align={"center"}
+      // justify={"center"}
+      mt={8}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} pt={0}>
@@ -100,7 +95,7 @@ const Register = () => {
           <Stack spacing={4}>
             <HStack>
               <Box>
-                <FormControl id="firstName" isRequired>
+                <FormControl isRequired>
                   <FormLabel>First Name</FormLabel>
                   <Input
                     onChange={onChange}
@@ -111,7 +106,7 @@ const Register = () => {
                 </FormControl>
               </Box>
               <Box>
-                <FormControl id="lastName">
+                <FormControl>
                   <FormLabel>Last Name</FormLabel>
                   <Input
                     onChange={onChange}
@@ -122,7 +117,7 @@ const Register = () => {
                 </FormControl>
               </Box>
             </HStack>
-            <FormControl id="username" isRequired>
+            <FormControl isRequired>
               <FormLabel>Email address</FormLabel>
               <Input
                 onChange={onChange}
@@ -131,7 +126,7 @@ const Register = () => {
                 name="username"
               />
             </FormControl>
-            <FormControl id="password" isRequired>
+            <FormControl isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input
