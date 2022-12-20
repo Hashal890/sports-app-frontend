@@ -2,19 +2,20 @@ import {
   AUTH_LOADING,
   AUTH_SUCCESS,
   AUTH_ERROR,
-  POST_USERS_SUCCESS
+  POST_USERS_SUCCESS,
 } from "./auth.types.js";
+import { ReducerInput } from "../../Interfaces/Store.interfaces.js";
 
 const userInitalState = {
   loading: false,
   error: false,
-  isAuth : false,
-  data: []
+  isAuth: false,
+  data: [],
 };
 
 export const authReducer = (
   state = userInitalState,
-  { type, payload }
+  { type, payload }: ReducerInput
 ) => {
   switch (type) {
     case AUTH_LOADING: {
@@ -41,7 +42,7 @@ export const authReducer = (
       };
     }
     case POST_USERS_SUCCESS: {
-      console.log("inside reducer")
+      // console.log("inside reducer");
       return {
         ...state,
         loading: false,

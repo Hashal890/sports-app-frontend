@@ -5,8 +5,9 @@ import {
   POST_USERS_SUCCESS,
 } from "./auth.types.js";
 import axios from "axios";
+import { UserDetails } from "../../Interfaces/Store.interfaces.js";
 
-export const getUser = () => async (dispatch) => {
+export const getUser = () => async (dispatch: any) => {
   dispatch({ type: AUTH_LOADING });
   try {
     let res = await axios.get(`https://sample-production.up.railway.app/user`);
@@ -17,7 +18,7 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
-export const postUser = (data) => async (dispatch) => {
+export const postUser = (data: UserDetails) => async (dispatch: any) => {
   // console.log("inside dispatch")
   dispatch({ type: AUTH_LOADING });
   try {
