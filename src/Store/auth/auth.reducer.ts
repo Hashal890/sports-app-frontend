@@ -1,16 +1,14 @@
-import {
-  AUTH_LOADING,
-  AUTH_SUCCESS,
-  AUTH_ERROR,
-  POST_USERS_SUCCESS,
-} from "./auth.types";
+import { AUTH_LOADING, AUTH_SUCCESS, AUTH_ERROR } from "./auth.types";
 import { ReducerInput } from "../../Interfaces/Store.interfaces.js";
+
+const token = localStorage.getItem("token") || "";
 
 const userInitalState = {
   loading: false,
   error: false,
-  isAuth: false,
-  data: [],
+  isAuth: token ? true : false,
+  data: null,
+  token,
 };
 
 export const authReducer = (
@@ -26,28 +24,23 @@ export const authReducer = (
       };
     }
     case AUTH_SUCCESS: {
+      // console.log(payload, payload.user, payload.user.token);
+      localStorage.setItem("token", payload.user.token);
       return {
         ...state,
         loading: false,
         error: false,
         isAuth: true,
-        data: payload,
+        data: payload.user,
+        token: payload.user.token,
       };
     }
     case AUTH_ERROR: {
+      localStorage.removeItem("token");
       return {
         ...state,
         loading: false,
         error: true,
-      };
-    }
-    case POST_USERS_SUCCESS: {
-      // console.log("inside reducer");
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        data: payload,
       };
     }
     default: {

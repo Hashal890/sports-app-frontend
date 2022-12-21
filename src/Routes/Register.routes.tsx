@@ -14,15 +14,19 @@ import {
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RegisterInitState } from "../Assets/data";
+import { useDispatch } from "react-redux";
+import { postUser } from "../Store/auth/auth.actions";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [details, setDetails] = useState(RegisterInitState);
   const toast = useToast();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onChange = (e: any) => {
     const { name, value } = e.target;
@@ -33,7 +37,7 @@ const Register = () => {
     });
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     if (
       details.fName === "" ||
       details.username === "" ||
@@ -51,6 +55,7 @@ const Register = () => {
       });
     } else {
       try {
+        await dispatch<any>(postUser(details));
         toast({
           title: "Account created.",
           description: "We've created your account for you.",
@@ -61,6 +66,7 @@ const Register = () => {
           position: "bottom-right",
         });
         setDetails(RegisterInitState);
+        navigate("/");
       } catch (error: any) {
         toast({
           title: error.message,
@@ -73,6 +79,13 @@ const Register = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Flex

@@ -15,13 +15,18 @@ import {
   InputRightElement,
   useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { LoginInitState } from "../Assets/data";
+import { loginUser } from "../Store/auth/auth.actions";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [details, setDetails] = useState(LoginInitState);
   const toast = useToast();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onChange = (e: any) => {
     const { name, value } = e.target;
@@ -32,7 +37,7 @@ const Login = () => {
     });
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     if (details.username === "" || details.password === "") {
       toast({
         title: "Details missing.",
@@ -46,6 +51,9 @@ const Login = () => {
       });
     } else {
       try {
+        await dispatch<any>(
+          loginUser({ ...details, password: Number(details.password) })
+        );
         toast({
           title: "Login successful.",
           description: "You are logged in to your account.",
@@ -56,6 +64,7 @@ const Login = () => {
           position: "bottom-right",
         });
         setDetails(LoginInitState);
+        navigate("/");
       } catch (error: any) {
         toast({
           title: error.message,
@@ -69,12 +78,19 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <Flex justify={"center"} bg={useColorModeValue("gray.50", "gray.800")}>
       <Stack spacing={8} w={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} color={"green.700"}>
-            Login In
+            Log In
           </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
             to enjoy all of our cool <Link color={"blue.400"}>features</Link> ✌️

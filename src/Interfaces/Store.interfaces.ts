@@ -2,7 +2,7 @@ export interface UserDetails {
   fName?: string;
   lName?: string;
   username?: string;
-  password?: string;
+  password?: string | number;
   age?: number;
 }
 
