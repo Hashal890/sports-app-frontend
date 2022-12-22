@@ -2,6 +2,7 @@ import {
   AUTH_LOADING,
   AUTH_SUCCESS,
   AUTH_ERROR,
+  AUTH_LOGOUT,
 } from "./auth.types";
 import axios from "axios";
 import { UserDetails } from "../../Interfaces/Store.interfaces.js";
@@ -44,6 +45,15 @@ export const loginUser = (data: UserDetails) => async (dispatch: any) => {
     );
     // console.log(res.data);
     dispatch({ type: AUTH_SUCCESS, payload: res.data });
+  } catch (err) {
+    dispatch({ type: AUTH_ERROR });
+  }
+};
+
+export const logoutUser = () => async (dispatch: any) => {
+  dispatch({ type: AUTH_LOADING });
+  try {
+    dispatch({ type: AUTH_LOGOUT });
   } catch (err) {
     dispatch({ type: AUTH_ERROR });
   }

@@ -1,4 +1,9 @@
-import { AUTH_LOADING, AUTH_SUCCESS, AUTH_ERROR } from "./auth.types";
+import {
+  AUTH_LOADING,
+  AUTH_SUCCESS,
+  AUTH_ERROR,
+  AUTH_LOGOUT,
+} from "./auth.types";
 import { ReducerInput } from "../../Interfaces/Store.interfaces.js";
 
 const token = localStorage.getItem("token") || "";
@@ -36,11 +41,21 @@ export const authReducer = (
       };
     }
     case AUTH_ERROR: {
-      localStorage.removeItem("token");
       return {
         ...state,
         loading: false,
         error: true,
+      };
+    }
+    case AUTH_LOGOUT: {
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        isAuth: false,
+        data: null,
+        token: "",
       };
     }
     default: {

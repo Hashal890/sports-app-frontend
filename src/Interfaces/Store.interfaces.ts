@@ -9,8 +9,8 @@ export interface UserDetails {
 type ReducerState = {
   loading: boolean;
   error: boolean;
-  isAuth: boolean;
-  data: any;
+  isAuth?: boolean;
+  data?: any;
 };
 
 export interface ReducerInput {
