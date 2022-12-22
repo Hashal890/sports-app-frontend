@@ -11,6 +11,7 @@ type ReducerState = {
   error: boolean;
   isAuth?: boolean;
   data?: any;
+  totalPages? : number;
 };
 
 export interface ReducerInput {

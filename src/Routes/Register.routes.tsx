@@ -18,7 +18,7 @@ import { useState, useEffect } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterInitState } from "../Assets/data";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "../Store/auth/auth.actions";
 
 const Register = () => {
@@ -27,6 +27,9 @@ const Register = () => {
   const toast = useToast();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading, error, isAuth, data }: any = useSelector(
+    (store: any) => store.auth
+  );
 
   const onChange = (e: any) => {
     const { name, value } = e.target;
@@ -81,9 +84,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/");
+    if (isAuth) {
+      // navigate("/");
+      // const {username, password} = await Ver
+      // dispatch(loginUser(id));
     }
   }, []);
 
@@ -99,6 +103,16 @@ const Register = () => {
         <Heading fontSize={"4xl"} textAlign={"center"} color={"green.700"}>
           Register
         </Heading>
+        {loading && (
+          <Heading mb={6} color={"green.500"}>
+            Loading...
+          </Heading>
+        )}
+        {error && (
+          <Heading mb={6} color={"red.500"}>
+            Something went wrong...
+          </Heading>
+        )}
         <Box
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
