@@ -1,4 +1,4 @@
-# Sports App (Ex : Playo App)
+## Sports App (Ex : Playo App)
 
 Our app is a platform for sports enthusiasts to find and join sports events near them. With our app, users can browse a list of available events, view details about each event, and join the events they are interested in. The app allows users to create their own events and set a limit on the number of players, as well as view the list of players who have joined the event. It is simple for users to find and join the events they are interested in. Whether you are looking to join a pickup football game or a local badminton tournament.
 
@@ -23,3 +23,10 @@ Our app is a platform for sports enthusiasts to find and join sports events near
 - React.js in the front-end with functional components and hooks.
 - Backend with Node.js and any database.
 - Token-based authentication.
+
+## Connect with author
+- [Twitter](https://twitter.com/harshal258)
+- [LinkdIn](https://www.linkedin.com/in/harshalpardeshi/)
+
+## Feedback
+If you have any feedback or queries, please reach out to me at pardeshiharshal90@gmail.com.
